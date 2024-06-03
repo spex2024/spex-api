@@ -62,3 +62,25 @@ export const healthCheck = async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 };
+
+
+export const deleteFeedback = async (req, res) => {
+    try {
+        const { _id } = req.params;
+
+        if (!_id) {
+            return res.status(400).json({ error: 'Feedback ID is required' });
+        }
+
+        const deletedFeedback = await Feedback.findByIdAndDelete(_id);
+
+        if (!deletedFeedback) {
+            return res.status(404).json({ error: 'Feedback not found' });
+        }
+
+        res.status(200).json({ message: 'Feedback deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting feedback:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
