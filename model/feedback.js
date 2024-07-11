@@ -22,35 +22,33 @@ const FeedbackSchema = new Schema(
         },
         answer1: {
             type : String, // Store image as Buffer
-            required :true
+
         },
         answer2: {
             type : String, // Store image as Buffer
-            required :true
+
         },
         answer3: {
             type : String, // Store image as Buffer
-            required :true
+
         },
         answer4: {
             type : String, // Store image as Buffer
-            required :true
+
         },
         answer5: {
             type : String, // Store image as Buffer
-            required :true
+
         },
         answer6: {
             type : String, // Store image as Buffer
-            required :true
+
         },
         answer7: {
             type : String, // Store image as Buffer
-            required :true
         },
         answer8: {
             type : String, // Store image as Buffer
-            required :true
         },
 
     },
