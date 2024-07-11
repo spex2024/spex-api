@@ -17,8 +17,10 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(cors({
-    origin: 'https://www.spexafrica.app',
-    credentials :true
+    origin: 'https://www.spexafrica.app', // Allow only this origin
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Allowed HTTP methods
+    credentials: true, // Allow credentials (cookies, authorization headers, TLS client certificates)
+    optionsSuccessStatus: 204 // Response status for successful OPTIONS requests
 
 }));
 app.use(cookieParser());
