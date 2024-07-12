@@ -65,7 +65,7 @@ export const createFeedback = async (req, res) => {
 };
 
 export const updateFeedback = async (req, res) => {
-    const { email, answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8 } = req.body;
+    const { name, email, answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8 } = req.body;
 
     try {
         const feedback = await Feedback.findOneAndUpdate(
