@@ -81,7 +81,9 @@ export const updateFeedback = async (req, res) => {
     `,
             html: `
         <p>Hi ${profile.name},</p>
-        <p>Thank you for joining our waitlist. We are excited to have you on board and will keep you updated on our progress.</p>
+        <p>
+     Thank you for your valuable feedback. We are thrilled to have you on board and look forward to keeping you updated on our progress.
+        Best regards</p>
         <p>Best regards,<br>The Spex Africa Team</p>
     `
         };
