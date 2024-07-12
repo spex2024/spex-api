@@ -80,7 +80,7 @@ export const updateFeedback = async (req, res) => {
             to: email,
             subject: 'Thank you for your feedback!',
             text: `
-        Hi ${name},
+        Hi ${profile.name},
 
         Thank you for your feedback. We are excited to have you on board and will keep you updated on our progress.
 
