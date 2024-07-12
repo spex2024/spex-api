@@ -14,16 +14,14 @@ export const createFeedback = async (req, res) => {
     try {
         const { name, email, phone, company } = req.body;
 
-        const newFeedback = new Feedback({
+        const newFeedback = await Feedback.create({
             name,
             email,
             phone,
             company
         });
 
-        const savedFeedback = await newFeedback.save();
 
-        res.status(201).json(savedFeedback);
 
         const mailOptions = {
             from: 'Spex Africa <no-reply@spexafrica.com>',
@@ -57,11 +55,6 @@ export const createFeedback = async (req, res) => {
         console.error("Error creating feedback:", error);
         res.status(500).json({ error: "Internal Server Error" });
     }
-
-
-
-
-
 };
 
 export const updateFeedback = async (req, res) => {
