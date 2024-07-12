@@ -65,7 +65,7 @@ export const createFeedback = async (req, res) => {
 };
 
 export const updateFeedback = async (req, res) => {
-    const { name, email, answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8 } = req.body;
+    const {  email, answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8 } = req.body;
 
     try {
         const feedback = await Feedback.findOneAndUpdate(
@@ -73,6 +73,8 @@ export const updateFeedback = async (req, res) => {
             { answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8 },
             { new: true, upsert: true } // Update the existing document or insert if it doesn't exist
         );
+
+        const profile = await  Feedback.findOne({email})
         const mailOptions = {
             from: 'Spex Africa <no-reply@spexafrica.com>',
             to: email,
@@ -86,7 +88,7 @@ export const updateFeedback = async (req, res) => {
         The Spex Africa Team
     `,
             html: `
-        <p>Hi ${name},</p>
+        <p>Hi ${profile.name},</p>
         <p>Thank you for joining our waitlist. We are excited to have you on board and will keep you updated on our progress.</p>
         <p>Best regards,<br>The Spex Africa Team</p>
     `
