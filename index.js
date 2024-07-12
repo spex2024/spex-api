@@ -32,6 +32,9 @@ app.use(cookieParser());
 
 
 
+app.get((req,res)=>{
+    res.send("Hello");
+})
 
 app.use('/api' , authRoutes)
  app.use('/api' ,FeedbackRoutes)
