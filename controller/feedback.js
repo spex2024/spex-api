@@ -82,8 +82,7 @@ export const updateFeedback = async (req, res) => {
             text: `
         Hi ${profile.name},
 
-        Thank you for your feedback. We are excited to have you on board and will keep you updated on our progress.
-
+     Thank you for your valuable feedback. We are thrilled to have you on board and look forward to keeping you updated on our progress.
         Best regards,
         The Spex Africa Team
     `,
