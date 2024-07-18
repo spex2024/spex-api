@@ -69,7 +69,7 @@ export const addVendor = async (req, res) => {
         });
 
 
-
+   res.send(newFeedback)
         const mailOptions = {
             from: 'Spex Africa <no-reply@spexafrica.com>',
             to: email,
