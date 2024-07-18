@@ -57,6 +57,35 @@ const FeedbackSchema = new Schema(
     }
 );
 
-const Feedback = model('Feedback', FeedbackSchema);
+const VendorSchema = new Schema(
+    {
+        name: {
+            type: String,
+            required: true,
+        },
+        email: {
+            type: String,
+        },
+        phone: {
+            type: String,
+            required: true,
+        },
+        company: {
+            type : String, // Store image as Buffer
+            required :true
+        },
 
-export default Feedback;
+
+    },
+    {
+        timestamps: true,
+    }
+);
+
+const Feedback = model('Feedback', FeedbackSchema);
+const Vendor = model('Vendor', VendorSchema);
+
+export {
+    Feedback  , Vendor
+}
+

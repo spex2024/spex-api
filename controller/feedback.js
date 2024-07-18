@@ -1,4 +1,4 @@
-import Feedback from "../model/feedback.js";
+import {Feedback, Vendor} from "../model/feedback.js";
 import nodemailer from "nodemailer";
 const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -15,6 +15,53 @@ export const createFeedback = async (req, res) => {
         const { name, email, phone, company } = req.body;
 
         const newFeedback = await Feedback.create({
+            name,
+            email,
+            phone,
+            company
+        });
+
+
+
+        const mailOptions = {
+            from: 'Spex Africa <no-reply@spexafrica.com>',
+            to: email,
+            subject: 'Thank you for joining our waitlist!',
+            text: `
+        Hi ${name},
+
+        Thank you for joining our waitlist. We are excited to have you on board and will keep you updated on our progress.
+
+        Best regards,
+        The Spex Africa Team
+    `,
+            html: `
+        <p>Hi ${name},</p>
+        <p>Thank you for joining our waitlist. We are excited to have you on board and will keep you updated on our progress.</p>
+        <p>Best regards,<br>The Spex Africa Team</p>
+    `
+        };
+
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return res.status(500).json({ error: error.message });
+            } else {
+                res.status(200).json({  message: 'Feedback submitted and email sent!' });
+            }
+        });
+
+    } catch (error) {
+        console.error("Error creating feedback:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+export const addVendor = async (req, res) => {
+    try {
+        const { name, email, phone, company } = req.body;
+
+        const newFeedback = await Vendor.create({
             name,
             email,
             phone,
@@ -106,6 +153,16 @@ export const updateFeedback = async (req, res) => {
 export const getFeedback = async (req, res) => {
     try {
         const postData = await Feedback.find().sort({ createdAt: -1 });
+        res.json(postData);
+    } catch (error) {
+        console.error('Error fetching posts:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+export const vendorFeedback = async (req, res) => {
+    try {
+        const postData = await Vendor.find().sort({ createdAt: -1 });
         res.json(postData);
     } catch (error) {
         console.error('Error fetching posts:', error);
