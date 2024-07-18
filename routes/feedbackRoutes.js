@@ -14,7 +14,7 @@ const router = Router();
 
 router.post('/create', createFeedback);
 router.post('/update', updateFeedback);
-router.post('/vendor', addVendor);
+router.post('/add-vendor', addVendor);
 router.get('/feedback', getFeedback);
 router.get('/vendor', vendorFeedback);
 router.get('/feedback/:id', getFeedbackById);
