@@ -152,6 +152,7 @@ export const updateFeedback = async (req, res) => {
 export const getFeedback = async (req, res) => {
     try {
         const postData = await Feedback.find().sort({ createdAt: -1 });
+        res.send(postData)
     } catch (error) {
         console.error('Error fetching posts:', error);
         res.status(500).json({ error: 'Internal server error' });
@@ -203,7 +204,9 @@ export const deleteFeedback = async (req, res) => {
         console.error('Error deleting feedback:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
-};export const deleteVendor = async (req, res) => {
+};
+
+export const deleteVendor = async (req, res) => {
     try {
         const { id } = req.params;
 
