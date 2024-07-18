@@ -213,7 +213,7 @@ export const deleteFeedback = async (req, res) => {
             return res.status(400).json({ error: 'Feedback ID is required' });
         }
 
-        const deletedFeedback = await Feedback.findByIdAndDelete(id);
+        const deletedFeedback = await Vendor.findByIdAndDelete(id);
 
         if (!deletedFeedback) {
             return res.status(404).json({ error: 'Feedback not found' });
