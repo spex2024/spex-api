@@ -162,6 +162,7 @@ export const getFeedback = async (req, res) => {
 export const vendorFeedback = async (req, res) => {
     try {
         const postData = await Vendor.find().sort({ createdAt: -1 });
+        res.json(postData)
     } catch (error) {
         console.error('Error fetching posts:', error);
         res.status(500).json({ error: 'Internal server error' });
