@@ -27,8 +27,6 @@ export const register = async (req , res) => {
         // creating the user token
         const token = createToken(user._id , user.username , user.name , user.role);
 
-        // user info response in json format
-        res.status(201).json({name ,username , email , token });
     } catch (e) {
         res.status(401).json({error: e.message});
     }
@@ -49,7 +47,7 @@ export const login = async (req , res) => {
 
         // reponse info
         res.cookie('token', token, { httpOnly: true,maxAge: 24 * 60 * 1000 ,secure: true, sameSite:'none'  }, ).json({ message: 'Login successful'});
-        // res.status(201).json({username, token});
+
 
     } catch (e) {
 
@@ -86,6 +84,5 @@ export const profile =async (req, res) => {
             console.error('Error verifying JWT token:', err);
             return res.status(401).json({ error: 'Unauthorized' });
         }
-        res.json(info);
     });
 };
