@@ -74,6 +74,10 @@ const VendorSchema = new Schema(
             type : String, // Store image as Buffer
             required :true
         },
+        location: {
+            type : String, // Store image as Buffer
+            required :true
+        },
 
 
     },

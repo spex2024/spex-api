@@ -2,7 +2,7 @@ import { Router } from 'express';
 import {
     addVendor,
     createFeedback,
-    deleteFeedback,
+    deleteFeedback, deleteVendor,
     getFeedback,
     getFeedbackById,
     healthCheck,
@@ -19,6 +19,7 @@ router.get('/feedback', getFeedback);
 router.get('/vendor', vendorFeedback);
 router.get('/feedback/:id', getFeedbackById);
 router.delete('/feedback/:id', deleteFeedback);
+router.delete('/vendor/:id', deleteVendor);
 router.get('/healthcheck', healthCheck);
 
 export default router;

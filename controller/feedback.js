@@ -59,17 +59,16 @@ export const createFeedback = async (req, res) => {
 
 export const addVendor = async (req, res) => {
     try {
-        const { name, email, phone, company } = req.body;
+        const { name, email, phone, company , location } = req.body;
 
         const newFeedback = await Vendor.create({
             name,
             email,
             phone,
-            company
+            company,
+            location
         });
 
-
-   res.send(newFeedback)
         const mailOptions = {
             from: 'Spex Africa <no-reply@spexafrica.com>',
             to: email,
@@ -188,6 +187,25 @@ export const getFeedbackById = async (req, res) => {
 };
 
 export const deleteFeedback = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if (!id) {
+            return res.status(400).json({ error: 'Feedback ID is required' });
+        }
+
+        const deletedFeedback = await Feedback.findByIdAndDelete(id);
+
+        if (!deletedFeedback) {
+            return res.status(404).json({ error: 'Feedback not found' });
+        }
+
+        res.status(200).json({ message: 'Feedback deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting feedback:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};export const deleteVendor = async (req, res) => {
     try {
         const { id } = req.params;
 
